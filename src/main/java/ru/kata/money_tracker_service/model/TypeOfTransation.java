@@ -5,5 +5,5 @@ public enum TypeOfTransation {
     EXPENSE,
     TRANSFER,
 
-    TESTTTTTTTTTTTTTTTTTTTTTTTT
+
 }
