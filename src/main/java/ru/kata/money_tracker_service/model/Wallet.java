@@ -29,11 +29,9 @@ public class Wallet {
     @Setter
     private CurrencyEnum currency;
 
-    @Column(name = "total_amount")
     @Setter
     private double totalAmmount;
 
-    @Column(name = "group_wallets_id")
     @Setter
     private long GroupWalletsId;
 
