@@ -64,7 +64,7 @@ public class Transaction {
         this.amountOfCurrency = amountOfCurrency;
     }
 
-    public Transaction() {
+    public   Transaction() {
     }
 
     @Override
