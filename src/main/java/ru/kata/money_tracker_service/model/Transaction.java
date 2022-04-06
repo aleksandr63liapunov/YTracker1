@@ -64,19 +64,6 @@ public class Transaction {
         this.amountOfCurrency = amountOfCurrency;
     }
 
-    public   Transaction() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Transaction that = (Transaction) o;
-        return Objects.equals(expenseWalletId, that.expenseWalletId) && Objects.equals(incomeWalletId, that.incomeWalletId) && Objects.equals(amountOfCurrency, that.amountOfCurrency);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(expenseWalletId, incomeWalletId, amountOfCurrency);
+    public Transaction() {
     }
 }
