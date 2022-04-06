@@ -2,7 +2,6 @@ package ru.kata.money_tracker_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.kata.money_tracker_service.model.Wallet;
 
 @SpringBootApplication
 public class MoneyTrackerServiceApplication {
