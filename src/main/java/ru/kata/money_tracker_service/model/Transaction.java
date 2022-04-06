@@ -64,6 +64,8 @@ public class Transaction {
         this.amountOfCurrency = amountOfCurrency;
     }
 
+    //добавь equ
+
     public Transaction() {
     }
 }
