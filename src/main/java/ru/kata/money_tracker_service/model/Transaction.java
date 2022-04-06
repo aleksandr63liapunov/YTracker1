@@ -1,18 +1,21 @@
 package ru.kata.money_tracker_service.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Data //NoArgsCons...
-//Разбить на составляющие
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
+
 @Table(name = "transaction")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_id") //убрать
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "expense_wallet_id")
@@ -20,54 +23,15 @@ public class Transaction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "income_wallet_id")
     private Long incomeWalletId;
-    @Enumerated 
+    @Enumerated (EnumType.STRING)
     private TypeOfTransation type;
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
 
-// удалить
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getExpenseWalletId() {
-        return expenseWalletId;
-    }
-
-    public void setExpenseWalletId(Long expenseWalletId) {
+    public Transaction(Long expenseWalletId, Long incomeWalletId, TypeOfTransation type, Double amountOfCurrency) {
         this.expenseWalletId = expenseWalletId;
-    }
-
-    public Long getIncomeWalletId() {
-        return incomeWalletId;
-    }
-
-    public void setIncomeWalletId(Long incomeWalletId) {
         this.incomeWalletId = incomeWalletId;
-    }
-
-    public TypeOfTransation getType() {
-        return type;
-    }
-
-    public void setType(TypeOfTransation type) {
         this.type = type;
-    }
-
-    public Double getAmountOfCurrency() {
-        return amountOfCurrency;
-    }
-
-    public void setAmountOfCurrency(Double amountOfCurrency) {
         this.amountOfCurrency = amountOfCurrency;
-    }
-
-//    fgghfgh
-
-    public Transaction() {
     }
 }
