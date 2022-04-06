@@ -1,34 +1,26 @@
 package ru.kata.money_tracker_service.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
-@Table(name = "group_wallets_table")
+@Table
+@NoArgsConstructor @AllArgsConstructor @Getter @EqualsAndHashCode
 public class GroupWallets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private long id;
-    @Column(name = "title")
+
+    @Setter
     private String title;
-    @Column(name = "account_id")
+
     private long AccountId;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GroupWallets that = (GroupWallets) o;
-
-        return title != null ? title.equals(that.title) : that.title == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return title != null ? title.hashCode() : 0;
+    public GroupWallets(String title, long accountId) {
+        this.title = title;
+        AccountId = accountId;
     }
 }

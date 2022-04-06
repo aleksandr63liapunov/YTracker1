@@ -1,50 +1,40 @@
 package ru.kata.money_tracker_service.model;
 
-import lombok.Data;
-import org.springframework.context.annotation.Configuration;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Data
-@Table(name = "account_table")
+@Table
+@NoArgsConstructor @AllArgsConstructor @Getter @EqualsAndHashCode
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
+    @EqualsAndHashCode.Exclude
     private long id;
-    @Column(name = "user_id")
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private long userId;
-    @Column(name = "is_main_user")
-    @NotEmpty
+
+    @NotEmpty @NotBlank
+    @Setter
     private boolean isMainUser;
-//    @Column(name = "main_currency")
-//    @NotEmpty
+
     @Enumerated(EnumType.STRING)
+    @Setter
     private CurrencyEnum mainCurrency;
-    @OneToOne(mappedBy = "account")
+
+    @OneToOne(mappedBy = "account", targetEntity = Wallet.class)
+    @Setter
     private Wallet wallet;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Account account = (Account) o;
-
-        if (userId != account.userId) return false;
-        if (isMainUser != account.isMainUser) return false;
-        return mainCurrency == account.mainCurrency;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (isMainUser ? 1 : 0);
-        result = 31 * result + (mainCurrency != null ? mainCurrency.hashCode() : 0);
-        return result;
+    public Account(boolean isMainUser, CurrencyEnum mainCurrency, Wallet wallet) {
+        this.isMainUser = isMainUser;
+        this.mainCurrency = mainCurrency;
+        this.wallet = wallet;
     }
 }

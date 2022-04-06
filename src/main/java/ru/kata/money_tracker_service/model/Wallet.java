@@ -1,54 +1,47 @@
 package ru.kata.money_tracker_service.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
-@Table(name = "wallet_table")
+@Table
+@NoArgsConstructor @AllArgsConstructor @Getter @EqualsAndHashCode
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private long id;
-    @Column(name = "title")
+
+    @Setter
     private String title;
-    //@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
+
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @EqualsAndHashCode.Exclude
     private long accountId; // (ont-to-one);
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account", referencedColumnName = "account_id")
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class)
+    @JoinColumn(name = "account", referencedColumnName = "id")
+    @Setter
     private Account account;
-    @Column(name = "currency")
+
+    @Setter
     private CurrencyEnum currency;
+
     @Column(name = "total_amount")
+    @Setter
     private double totalAmmount;
+
     @Column(name = "group_wallets_id")
+    @Setter
     private long GroupWalletsId;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Wallet wallet = (Wallet) o;
-
-        if (Double.compare(wallet.totalAmmount, totalAmmount) != 0) return false;
-        if (title != null ? !title.equals(wallet.title) : wallet.title != null) return false;
-        if (account != null ? !account.equals(wallet.account) : wallet.account != null) return false;
-        return currency == wallet.currency;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (account != null ? account.hashCode() : 0);
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
-        temp = Double.doubleToLongBits(totalAmmount);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+    public Wallet(String title, Account account, CurrencyEnum currency, double totalAmmount, long groupWalletsId) {
+        this.title = title;
+        this.account = account;
+        this.currency = currency;
+        this.totalAmmount = totalAmmount;
+        GroupWalletsId = groupWalletsId;
     }
 }
