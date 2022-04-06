@@ -6,12 +6,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Data
+@Data //NoArgsCons...
+//Разбить на составляющие
 @Table(name = "transaction")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_id")
+    @Column(name = "transaction_id") //убрать
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "expense_wallet_id")
@@ -19,11 +20,12 @@ public class Transaction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "income_wallet_id")
     private Long incomeWalletId;
-    @Enumerated
+    @Enumerated 
     private TypeOfTransation type;
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
 
+// удалить
     public Long getId() {
         return id;
     }
