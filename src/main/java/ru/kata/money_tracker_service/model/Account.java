@@ -10,28 +10,27 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter(value = AccessLevel.NONE)
+@Setter
 @EqualsAndHashCode(exclude = {"id", "userId"})
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private long id;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private long userId;
 
     @NotEmpty
     @NotBlank
-    @Setter
     private boolean isMainUser;
 
     @Enumerated(EnumType.STRING)
-    @Setter
     private CurrencyEnum mainCurrency;
 
     @OneToOne(mappedBy = "account", targetEntity = Wallet.class)
-    @Setter
     private Wallet wallet;
 
     public Account(boolean isMainUser, CurrencyEnum mainCurrency, Wallet wallet) {

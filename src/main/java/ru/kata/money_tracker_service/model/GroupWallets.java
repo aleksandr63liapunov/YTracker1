@@ -9,18 +9,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter(value = AccessLevel.NONE)
+@Setter
 @EqualsAndHashCode(exclude = {"id"})
 public class GroupWallets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private long id;
 
-    @Setter
     private String title;
 
-    @Setter
     private long AccountId;
 
     public GroupWallets(String title, long accountId) {

@@ -9,15 +9,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter(value = AccessLevel.NONE)
+@Setter
 @EqualsAndHashCode(exclude = {"id", "accountId"})
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private long id;
 
-    @Setter
     private String title;
 
     @JoinColumn(name = "account_id", referencedColumnName = "id")
@@ -25,16 +25,12 @@ public class Wallet {
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class)
     @JoinColumn(name = "account", referencedColumnName = "id")
-    @Setter
     private Account account;
 
-    @Setter
     private CurrencyEnum currency;
 
-    @Setter
     private double totalAmount;
 
-    @Setter
     private long GroupWalletsId;
 
     public Wallet(String title, Account account, CurrencyEnum currency, double totalAmount, long groupWalletsId) {
