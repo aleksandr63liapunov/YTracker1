@@ -10,9 +10,9 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode (exclude = {"id"})
 
-@Table(name = "transaction")
+@Table
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Transaction {
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
 
-   
+
 
     public Transaction(Long expenseWalletId, Long incomeWalletId, TypeOfTransation type, Double amountOfCurrency) {
         this.expenseWalletId = expenseWalletId;
