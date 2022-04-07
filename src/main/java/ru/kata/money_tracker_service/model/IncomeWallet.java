@@ -10,10 +10,11 @@ import javax.persistence.*;
 @Entity
 @Table
 @Getter
-@Setter(value = AccessLevel.NONE)
+@Setter
 @EqualsAndHashCode(exclude = {"id"})
 public class IncomeWallet {
     @Id
+    @Setter(value = AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
