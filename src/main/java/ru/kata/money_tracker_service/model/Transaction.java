@@ -10,7 +10,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode (exclude = {"id"})
+@EqualsAndHashCode(exclude = {"id"})
 
 @Table
 public class Transaction {
@@ -35,7 +35,6 @@ public class Transaction {
     private TypeOfTransation type;
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
-
 
 
     public Transaction(Long expenseWalletId, Long incomeWalletId, TypeOfTransation type, Double amountOfCurrency) {
