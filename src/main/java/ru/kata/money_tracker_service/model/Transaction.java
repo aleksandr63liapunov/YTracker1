@@ -15,12 +15,19 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id")
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
+
     @JoinColumn(name = "expense_wallet_id")
     private Long expenseWalletId;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "expense_wallet", referencedColumnName = "id")
+    private ExpenseWallet expenseWallet;
+
     @JoinColumn(name = "income_wallet_id")
     private Long incomeWalletId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "income_wallet", referencedColumnName = "id")
+    private IncomeWallet incomeWallet;
+
     @Enumerated
     private TypeOfTransation type;
     @Column(name = "amount_of_currency")
@@ -29,16 +36,5 @@ public class Transaction {
     public Transaction() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Transaction that = (Transaction) o;
-        return Objects.equals(expenseWalletId, that.expenseWalletId) && Objects.equals(incomeWalletId, that.incomeWalletId) && Objects.equals(amountOfCurrency, that.amountOfCurrency);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(expenseWalletId, incomeWalletId, amountOfCurrency);
-    }
+    
 }
