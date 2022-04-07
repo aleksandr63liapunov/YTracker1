@@ -21,9 +21,4 @@ public class GroupWallets {
     private String title;
 
     private long AccountId;
-
-    public GroupWallets(String title, long accountId) {
-        this.title = title;
-        AccountId = accountId;
-    }
 }

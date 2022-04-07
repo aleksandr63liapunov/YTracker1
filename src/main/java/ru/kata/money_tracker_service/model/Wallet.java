@@ -32,12 +32,4 @@ public class Wallet {
     private double totalAmount;
 
     private long GroupWalletsId;
-
-    public Wallet(String title, Account account, CurrencyEnum currency, double totalAmount, long groupWalletsId) {
-        this.title = title;
-        this.account = account;
-        this.currency = currency;
-        this.totalAmount = totalAmount;
-        GroupWalletsId = groupWalletsId;
-    }
 }

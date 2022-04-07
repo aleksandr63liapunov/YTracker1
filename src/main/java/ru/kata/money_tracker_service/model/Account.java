@@ -19,7 +19,6 @@ public class Account {
     @Setter(value = AccessLevel.NONE)
     private long id;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(value = AccessLevel.NONE)
     private long userId;
 
@@ -32,10 +31,4 @@ public class Account {
 
     @OneToOne(mappedBy = "account", targetEntity = Wallet.class)
     private Wallet wallet;
-
-    public Account(boolean isMainUser, CurrencyEnum mainCurrency, Wallet wallet) {
-        this.isMainUser = isMainUser;
-        this.mainCurrency = mainCurrency;
-        this.wallet = wallet;
-    }
 }
