@@ -19,7 +19,7 @@ public class Tag {
     @Setter(value = AccessLevel.NONE)
     private Long id;
 
-    @NotEmpty(message = "UserId should not be empty")
+    @NotEmpty(message = "User id should not be empty")
     private Long UserId;
 
     @NotEmpty(message = "Title should not be empty")
