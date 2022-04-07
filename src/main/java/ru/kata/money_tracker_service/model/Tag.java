@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Tag")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
