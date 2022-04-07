@@ -9,14 +9,13 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
+@Setter(value = AccessLevel.NONE)
 @EqualsAndHashCode(exclude = {"id"})
 
 @Table
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_id")
     private Long id;
 
     @JoinColumn(name = "expense_wallet_id")
