@@ -16,17 +16,27 @@ import java.util.Objects;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "transaction_id")
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
+
     @JoinColumn(name = "expense_wallet_id")
     private Long expenseWalletId;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "expense_wallet", referencedColumnName = "id")
+    private ExpenseWallet expenseWallet;
+
     @JoinColumn(name = "income_wallet_id")
     private Long incomeWalletId;
-    @Enumerated (EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "income_wallet", referencedColumnName = "id")
+    private IncomeWallet incomeWallet;
+
+    @Enumerated
     private TypeOfTransation type;
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
+
+   
 
     public Transaction(Long expenseWalletId, Long incomeWalletId, TypeOfTransation type, Double amountOfCurrency) {
         this.expenseWalletId = expenseWalletId;
