@@ -3,24 +3,26 @@ package ru.kata.money_tracker_service.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 @Entity
 @Table
-@NoArgsConstructor @AllArgsConstructor @Getter @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter(value = AccessLevel.NONE)
+@EqualsAndHashCode(exclude = {"id", "userId"})
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
     private long id;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
     private long userId;
 
-    @NotEmpty @NotBlank
+    @NotEmpty
+    @NotBlank
     @Setter
     private boolean isMainUser;
 

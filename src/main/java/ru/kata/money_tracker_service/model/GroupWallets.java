@@ -6,17 +6,21 @@ import javax.persistence.*;
 
 @Entity
 @Table
-@NoArgsConstructor @AllArgsConstructor @Getter @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter(value = AccessLevel.NONE)
+@EqualsAndHashCode(exclude = {"id"})
 public class GroupWallets {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
     private long id;
 
     @Setter
     private String title;
 
+    @Setter
     private long AccountId;
 
     public GroupWallets(String title, long accountId) {

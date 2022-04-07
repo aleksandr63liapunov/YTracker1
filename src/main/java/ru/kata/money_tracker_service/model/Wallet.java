@@ -6,19 +6,21 @@ import javax.persistence.*;
 
 @Entity
 @Table
-@NoArgsConstructor @AllArgsConstructor @Getter @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter(value = AccessLevel.NONE)
+@EqualsAndHashCode(exclude = {"id", "accountId"})
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
     private long id;
 
     @Setter
     private String title;
 
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    @EqualsAndHashCode.Exclude
     private long accountId; // (ont-to-one);
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class)
@@ -30,16 +32,16 @@ public class Wallet {
     private CurrencyEnum currency;
 
     @Setter
-    private double totalAmmount;
+    private double totalAmount;
 
     @Setter
     private long GroupWalletsId;
 
-    public Wallet(String title, Account account, CurrencyEnum currency, double totalAmmount, long groupWalletsId) {
+    public Wallet(String title, Account account, CurrencyEnum currency, double totalAmount, long groupWalletsId) {
         this.title = title;
         this.account = account;
         this.currency = currency;
-        this.totalAmmount = totalAmmount;
+        this.totalAmount = totalAmount;
         GroupWalletsId = groupWalletsId;
     }
 }
