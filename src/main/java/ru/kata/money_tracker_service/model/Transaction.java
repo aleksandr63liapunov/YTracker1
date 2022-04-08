@@ -1,22 +1,19 @@
 package ru.kata.money_tracker_service.model;
 
-import lombok.*;
-
 import javax.persistence.*;
+
+import lombok.Data;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.util.Objects;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode(exclude = {"id"})
-
-@Table
+@Data
+@Table(name = "transaction")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(value = AccessLevel.NONE)
+    @Column(name = "transaction_id")
     private Long id;
 
     @JoinColumn(name = "expense_wallet_id")
@@ -36,11 +33,8 @@ public class Transaction {
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
 
-
-    public Transaction(Long expenseWalletId, Long incomeWalletId, TypeOfTransation type, Double amountOfCurrency) {
-        this.expenseWalletId = expenseWalletId;
-        this.incomeWalletId = incomeWalletId;
-        this.type = type;
-        this.amountOfCurrency = amountOfCurrency;
+    public Transaction() {
     }
+
+    
 }
