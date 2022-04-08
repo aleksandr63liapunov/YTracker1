@@ -9,5 +9,4 @@ public class MoneyTrackerServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(MoneyTrackerServiceApplication.class, args);
     }
-
 }
