@@ -19,6 +19,4 @@ public class ExpenseWallet {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Transaction transaction;
-
-
 }

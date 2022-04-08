@@ -36,7 +36,4 @@ public class Transaction {
     private TypeOfTransation type;
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
-
-
-    
 }
