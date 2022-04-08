@@ -4,6 +4,4 @@ public enum TypeOfTransation {
     INCOME,
     EXPENSE,
     TRANSFER,
-
-
 }
