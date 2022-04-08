@@ -21,7 +21,7 @@ public class Wallet {
     private String title;
 
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private long accountId; // (ont-to-one);
+    private long accountId;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class)
     @JoinColumn(name = "account", referencedColumnName = "id")
