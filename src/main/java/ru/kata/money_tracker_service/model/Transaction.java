@@ -19,7 +19,7 @@ public class Transaction {
     @JoinColumn(name = "expense_wallet_id")
     private Long expenseWalletId;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "expense_wallet", referencedColumnName = "id")
+    @JoinColumn (name = "expense_wallet", referencedColumnName = "id")
     private ExpenseWallet expenseWallet;
 
     @JoinColumn(name = "income_wallet_id")
