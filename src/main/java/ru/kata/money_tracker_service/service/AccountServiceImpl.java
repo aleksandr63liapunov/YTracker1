@@ -66,4 +66,8 @@ public class AccountServiceImpl implements AccountService{
         }
         return false;
     }
+
+    public void deleteAll() {
+        accountRepository.deleteAll();
+    }
 }

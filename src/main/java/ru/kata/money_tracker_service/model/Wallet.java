@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"id", "accountId"})
+@EqualsAndHashCode(exclude = {"id", "accountId", "groupWalletsId"})
 public class Wallet {
 
     @Id
@@ -30,5 +30,5 @@ public class Wallet {
 
     private double totalAmount;
 
-    private long GroupWalletsId;
+    private long groupWalletsId;
 }

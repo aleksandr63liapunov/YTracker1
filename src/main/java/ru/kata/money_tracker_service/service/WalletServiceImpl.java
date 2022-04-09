@@ -3,6 +3,7 @@ package ru.kata.money_tracker_service.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kata.money_tracker_service.model.Wallet;
+import ru.kata.money_tracker_service.repository.AccountRepository;
 import ru.kata.money_tracker_service.repository.WalletRepository;
 
 import javax.persistence.EntityManager;
@@ -24,8 +25,8 @@ public class WalletServiceImpl implements WalletService{
     }
 
     public Wallet findById(long walletId) {
-        Optional<Wallet> walletFromDB = walletRepository.findById(walletId);
-        return walletFromDB.orElse(null); //?
+
+        return walletRepository.findById(walletId).get();
     }
 
     public List<Wallet> findAll() {
@@ -57,11 +58,11 @@ public class WalletServiceImpl implements WalletService{
         return false;
     }
 
-    @Override
-    public Wallet findWalletByTitle(String title) {
-
-        return walletRepository.findWalletByTitle(title);
-    }
+//    @Override
+//    public Wallet findWalletByTitle(String title) {
+//
+//        return walletRepository.findWalletByTitle(title);
+//    }
 
     public void deleteAll() {
         walletRepository.deleteAll();
