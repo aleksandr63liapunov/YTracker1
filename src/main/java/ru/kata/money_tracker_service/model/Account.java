@@ -19,7 +19,6 @@ public class Account {
     @Setter(value = AccessLevel.NONE)
     private long id;
 
-    @Setter(value = AccessLevel.NONE)
     private long userId;
 
     @NotEmpty
