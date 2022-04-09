@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"id", "userId"})
+@EqualsAndHashCode()
 public class Account {
 
     @Id

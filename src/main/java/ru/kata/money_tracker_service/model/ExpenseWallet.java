@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode()
 public class ExpenseWallet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
