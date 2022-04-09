@@ -12,7 +12,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode()
 @Table
 public class Transaction {
     @Id
