@@ -20,17 +20,15 @@ public class Transaction {
     @Setter(value = AccessLevel.NONE)
     private Long id;
 
-    @JoinColumn(name = "expense_wallet_id")
-    private Long expenseWalletId;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "expense_wallet", referencedColumnName = "id")
-    private ExpenseWallet expenseWallet;
 
-    @JoinColumn(name = "income_wallet_id")
-    private Long incomeWalletId;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "income_wallet", referencedColumnName = "id")
-    private IncomeWallet incomeWallet;
+    @JoinColumn (name = "expense_wallet_id")
+    private Long expenseWallet;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "income_wallet_id")
+    private Long incomeWallet;
 
     @Enumerated
     private TypeOfTransation type;
