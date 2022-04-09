@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"id", "accountId", "groupWalletsId"})
+@EqualsAndHashCode()
 public class Wallet {
 
     @Id
