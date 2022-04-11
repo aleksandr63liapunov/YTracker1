@@ -17,5 +17,5 @@ public interface WalletService {
 
     public boolean delete(Long walletId);
 
-    //public Wallet findWalletByTitle(String title);
+    public void deleteAll();
 }

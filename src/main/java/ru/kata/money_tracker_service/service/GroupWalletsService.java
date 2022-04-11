@@ -16,4 +16,6 @@ public interface GroupWalletsService {
     public void update(GroupWallets groupWallets, long id);
 
     public boolean delete(Long groupWallets);
+
+    public void deleteAll();
 }

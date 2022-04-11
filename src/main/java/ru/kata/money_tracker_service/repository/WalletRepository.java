@@ -7,5 +7,4 @@ import ru.kata.money_tracker_service.model.Wallet;
 @Repository
 public interface WalletRepository extends JpaRepository<Wallet, Long> {
 
-    public Wallet findWalletByTitle(String title); // для тестирования
 }

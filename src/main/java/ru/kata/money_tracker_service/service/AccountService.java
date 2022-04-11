@@ -16,4 +16,6 @@ public interface AccountService {
     public void update(Account account, long id);
 
     public boolean delete(Long account);
+
+    public void deleteAll();
 }

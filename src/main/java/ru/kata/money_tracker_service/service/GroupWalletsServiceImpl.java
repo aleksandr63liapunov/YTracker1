@@ -1,26 +1,17 @@
 package ru.kata.money_tracker_service.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kata.money_tracker_service.model.Account;
 import ru.kata.money_tracker_service.model.GroupWallets;
-import ru.kata.money_tracker_service.model.Wallet;
 import ru.kata.money_tracker_service.repository.GroupWalletsRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class GroupWalletsServiceImpl implements GroupWalletsService{
 
-    @PersistenceContext
-    private EntityManager em;
+    private final GroupWalletsRepository groupWalletsRepository;
 
-    final GroupWalletsRepository groupWalletsRepository;
-
-    @Autowired
     public GroupWalletsServiceImpl(GroupWalletsRepository groupWalletsRepository) {
         this.groupWalletsRepository = groupWalletsRepository;
     }
@@ -63,5 +54,9 @@ public class GroupWalletsServiceImpl implements GroupWalletsService{
             return true;
         }
         return false;
+    }
+
+    public void deleteAll() {
+        groupWalletsRepository.deleteAll();
     }
 }

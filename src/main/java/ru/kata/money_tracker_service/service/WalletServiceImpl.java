@@ -1,25 +1,17 @@
 package ru.kata.money_tracker_service.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kata.money_tracker_service.model.Wallet;
-import ru.kata.money_tracker_service.repository.AccountRepository;
 import ru.kata.money_tracker_service.repository.WalletRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class WalletServiceImpl implements WalletService{
 
-    @PersistenceContext
-    private EntityManager em;
+    private final WalletRepository walletRepository;
 
-    final WalletRepository walletRepository;
-
-    @Autowired
     public WalletServiceImpl(WalletRepository walletRepository) {
         this.walletRepository = walletRepository;
     }
@@ -56,12 +48,6 @@ public class WalletServiceImpl implements WalletService{
         }
         return false;
     }
-
-//    @Override
-//    public Wallet findWalletByTitle(String title) {
-//
-//        return walletRepository.findWalletByTitle(title);
-//    }
 
     public void deleteAll() {
         walletRepository.deleteAll();
