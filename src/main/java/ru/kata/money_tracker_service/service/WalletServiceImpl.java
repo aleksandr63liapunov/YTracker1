@@ -24,9 +24,8 @@ public class WalletServiceImpl implements WalletService{
         this.walletRepository = walletRepository;
     }
 
-    public Wallet findById(long walletId) {
-
-        return walletRepository.findById(walletId).get();
+    public Optional<Wallet> findById(long walletId) {
+        return walletRepository.findById(walletId);
     }
 
     public List<Wallet> findAll() {

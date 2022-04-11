@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface WalletService {
 
-    public Wallet findById(long walletId);
+    public Optional<Wallet> findById(long walletId);
 
     public List<Wallet> findAll();
 

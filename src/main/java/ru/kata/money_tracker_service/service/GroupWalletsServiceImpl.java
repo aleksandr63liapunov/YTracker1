@@ -26,10 +26,8 @@ public class GroupWalletsServiceImpl implements GroupWalletsService{
     }
 
     @Override
-    public GroupWallets findById(long groupWalletsId) {
-
-        Optional<GroupWallets> groupWalletsFromDB = groupWalletsRepository.findById(groupWalletsId);
-        return groupWalletsFromDB.orElse(null); //?
+    public Optional<GroupWallets> findById(long groupWalletsId) {
+        return groupWalletsRepository.findById(groupWalletsId);
     }
 
     @Override

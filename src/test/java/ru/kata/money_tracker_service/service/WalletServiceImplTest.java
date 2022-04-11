@@ -39,7 +39,6 @@ class WalletServiceImplTest {
     void findById() {
 
         walletService.save(walletTest);
-
         List<Wallet> walletList = walletService.findAll();
 
         try {
@@ -128,7 +127,6 @@ class WalletServiceImplTest {
 
         walletService.save(walletTest);
         walletService.save(walletTest1);
-
         List<Wallet> walletList = walletService.findAll();
 
         try {

@@ -3,7 +3,6 @@ package ru.kata.money_tracker_service.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kata.money_tracker_service.model.Account;
-import ru.kata.money_tracker_service.model.Wallet;
 import ru.kata.money_tracker_service.repository.AccountRepository;
 
 import javax.persistence.EntityManager;
@@ -26,10 +25,8 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public Account findById(long accountId) {
-
-        Optional<Account> walletFromDB = accountRepository.findById(accountId);
-        return walletFromDB.orElse(null); //?
+    public Optional<Account> findById(long accountId) {
+        return accountRepository.findById(accountId);
     }
 
     @Override
