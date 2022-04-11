@@ -21,12 +21,12 @@ public class Transaction {
     private Long id;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn (name = "expense_wallet")
     private Wallet expenseWallet;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "income_wallet")
     private Wallet incomeWallet;
 
