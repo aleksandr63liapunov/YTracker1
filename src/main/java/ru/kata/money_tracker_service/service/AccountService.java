@@ -7,15 +7,15 @@ import java.util.Optional;
 
 public interface AccountService {
 
-    public Optional<Account> findById(long accountId);
+    Optional<Account> findById(long accountId);
 
-    public List<Account> findAll();
+    List<Account> findAll();
 
-    public boolean save(Account account);
+    Account save(Account account);
 
-    public void update(Account account, long id);
+    Account update(Account account, long id);
 
-    public boolean delete(Long account);
+    void delete(Long account);
 
-    public void deleteAll();
+    void deleteAll();
 }

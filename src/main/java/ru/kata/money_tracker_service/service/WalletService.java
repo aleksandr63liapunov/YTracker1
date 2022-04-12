@@ -7,15 +7,15 @@ import java.util.Optional;
 
 public interface WalletService {
 
-    public Optional<Wallet> findById(long walletId);
+    Optional<Wallet> findById(long walletId);
 
-    public List<Wallet> findAll();
+    List<Wallet> findAll();
 
-    public boolean save(Wallet wallet);
+    Wallet save(Wallet wallet);
 
-    public void update(Wallet wallet, long id);
+    Wallet update(Wallet wallet, long id);
 
-    public boolean delete(Long walletId);
+    void delete(Long walletId);
 
-    public void deleteAll();
+    void deleteAll();
 }

@@ -78,7 +78,8 @@ class WalletServiceImplTest {
 
         try {
             walletTest.setTitle(randomText());
-            if (!walletService.save(walletTest)) {
+            Wallet wallet = walletService.save(walletTest);
+            if (!wallet.getTitle().equals(walletTest.getTitle())) {
                 Assertions.fail("Save error");
             }
             List<Wallet> walletList = walletService.findAll();
@@ -111,7 +112,7 @@ class WalletServiceImplTest {
             walletService.update(updatedWallet, updatedWallet.getId());
             System.out.println(updatedWallet.getTitle());
             if(updatedWallet.getId() != id) {
-                Assertions.fail("Expected list size 1, but received " + updatedWallet.getId());
+                Assertions.fail("Expected list size "  + id + " , but received " + updatedWallet.getId());
             }
             System.out.println(walletList.get(2).getId());
             System.out.println(updatedWallet.getId());

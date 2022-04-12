@@ -78,8 +78,8 @@ class AccountServiceImplTest {
     void save() {
 
         try {
-            //accountTest.setWallet(wallet);
-            if (!accountService.save(accountTest)) {
+            Account account = accountService.save(accountTest);
+            if (!account.getWallet().getTitle().equals(wallet.getTitle())) {
                 Assertions.fail("Save error");
             }
             List<Account> accountList = accountService.findAll();
@@ -112,7 +112,7 @@ class AccountServiceImplTest {
             accountService.update(updatedAccount, updatedAccount.getId());
             System.out.println(updatedAccount.getWallet());
             if(updatedAccount.getId() != id) {
-                Assertions.fail("Expected list size 1, but received " + updatedAccount.getId());
+                Assertions.fail("Expected list size " + id + " , but received " + updatedAccount.getId());
             }
             System.out.println(accountList.get(2).getId());
             System.out.println(updatedAccount.getId());

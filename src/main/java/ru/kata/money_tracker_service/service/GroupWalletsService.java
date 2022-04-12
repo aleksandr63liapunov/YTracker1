@@ -7,15 +7,15 @@ import java.util.Optional;
 
 public interface GroupWalletsService {
 
-    public Optional<GroupWallets> findById(long groupWalletsId);
+    Optional<GroupWallets> findById(long groupWalletsId);
 
-    public List<GroupWallets> findAll();
+    List<GroupWallets> findAll();
 
-    public boolean save(GroupWallets groupWallets);
+    GroupWallets save(GroupWallets groupWallets);
 
-    public void update(GroupWallets groupWallets, long id);
+    GroupWallets update(GroupWallets groupWallets, long id);
 
-    public boolean delete(Long groupWallets);
+    void delete(Long groupWallets);
 
-    public void deleteAll();
+    void deleteAll();
 }

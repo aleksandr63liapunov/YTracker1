@@ -27,33 +27,34 @@ public class GroupWalletsServiceImpl implements GroupWalletsService{
     }
 
     @Override
-    public boolean save(GroupWallets groupWallets) {
+    public GroupWallets save(GroupWallets groupWallets) {
 
         GroupWallets groupWalletsFromDB = groupWalletsRepository
                 .findById(groupWallets.getId()).orElse(null); //?
 
         if (groupWalletsFromDB != null) {
-            return false;
+            return groupWalletsFromDB;
         }
         groupWalletsRepository.save(groupWallets);
-        return true;
+        return groupWallets;
     }
 
     @Override
-    public void update(GroupWallets groupWallets, long id) {
+    public GroupWallets update(GroupWallets groupWallets, long id) {
 
         groupWallets.setId(id);
         groupWalletsRepository.save(groupWallets);
+        return groupWallets;
     }
 
     @Override
-    public boolean delete(Long groupWalletsId) {
+    public void delete(Long groupWalletsId) {
 
         if (groupWalletsRepository.findById(groupWalletsId).isPresent()) {
             groupWalletsRepository.deleteById(groupWalletsId);
-            return true;
+        } else {
+            groupWalletsRepository.delete(groupWalletsRepository.findById(groupWalletsId).get());
         }
-        return false;
     }
 
     public void deleteAll() {

@@ -28,32 +28,33 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public boolean save(Account account) {
+    public Account save(Account account) {
 
         Account accountFromDB = accountRepository.findById(account.getId()).orElse(null); //?
 
         if (accountFromDB != null) {
-            return false;
+            return accountFromDB;
         }
         accountRepository.save(account);
-        return true;
+        return account;
     }
 
     @Override
-    public void update(Account account, long id) {
+    public Account update(Account account, long id) {
 
         account.setId(id);
         accountRepository.save(account);
+        return account;
     }
 
     @Override
-    public boolean delete(Long accountId) {
+    public void delete(Long accountId) {
 
         if (accountRepository.findById(accountId).isPresent()) {
             accountRepository.deleteById(accountId);
-            return true;
+        } else {
+            accountRepository.delete(accountRepository.findById(accountId).get());
         }
-        return false;
     }
 
     public void deleteAll() {
