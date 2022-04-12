@@ -105,7 +105,7 @@ class GroupWalletsServiceImplTest {
         updatedWallet.setTitle(randomText());
 
         try {
-            groupWalletService.update(updatedWallet, updatedWallet.getId());
+            groupWalletService.update(updatedWallet);
             System.out.println(updatedWallet.getTitle());
             if(updatedWallet.getId() != id) {
                 Assertions.fail("Expected list size " + id + " , but received " + updatedWallet.getId());

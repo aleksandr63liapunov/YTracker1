@@ -25,29 +25,18 @@ public class WalletServiceImpl implements WalletService{
     }
 
     public Wallet save(Wallet wallet) {
-        Wallet walletFromDB = walletRepository.findById(wallet.getId()).orElse(null); //?
 
-        if (walletFromDB != null) {
-            return walletFromDB; //NPE
-        }
-        walletRepository.save(wallet);
-        return wallet;
+        return walletRepository.save(wallet);
     }
 
-    public Wallet update(Wallet wallet, long id) {
+    public Wallet update(Wallet wallet) {
 
-        wallet.setId(id);
-        walletRepository.save(wallet);
-        return wallet;
+        return walletRepository.save(wallet);
     }
 
     public void delete(Long walletId) {
 
-        if (walletRepository.findById(walletId).isPresent()) {
-            walletRepository.deleteById(walletId);
-        } else {
-            walletRepository.delete(walletRepository.findById(walletId).get());
-        }
+        walletRepository.delete(walletRepository.findById(walletId).get());
     }
 
     public void deleteAll() {

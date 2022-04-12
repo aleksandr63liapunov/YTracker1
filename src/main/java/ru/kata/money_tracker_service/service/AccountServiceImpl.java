@@ -30,31 +30,19 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public Account save(Account account) {
 
-        Account accountFromDB = accountRepository.findById(account.getId()).orElse(null); //?
-
-        if (accountFromDB != null) {
-            return accountFromDB;
-        }
-        accountRepository.save(account);
-        return account;
+        return accountRepository.save(account);
     }
 
     @Override
-    public Account update(Account account, long id) {
+    public Account update(Account account) {
 
-        account.setId(id);
-        accountRepository.save(account);
-        return account;
+        return accountRepository.save(account);
     }
 
     @Override
     public void delete(Long accountId) {
 
-        if (accountRepository.findById(accountId).isPresent()) {
-            accountRepository.deleteById(accountId);
-        } else {
-            accountRepository.delete(accountRepository.findById(accountId).get());
-        }
+        accountRepository.delete(accountRepository.findById(accountId).get());
     }
 
     public void deleteAll() {

@@ -109,7 +109,7 @@ class AccountServiceImplTest {
         updatedAccount.setWallet(wallet1);
 
         try {
-            accountService.update(updatedAccount, updatedAccount.getId());
+            accountService.update(updatedAccount);
             System.out.println(updatedAccount.getWallet());
             if(updatedAccount.getId() != id) {
                 Assertions.fail("Expected list size " + id + " , but received " + updatedAccount.getId());

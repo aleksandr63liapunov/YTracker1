@@ -13,7 +13,7 @@ public interface GroupWalletsService {
 
     GroupWallets save(GroupWallets groupWallets);
 
-    GroupWallets update(GroupWallets groupWallets, long id);
+    GroupWallets update(GroupWallets groupWallets);
 
     void delete(Long groupWallets);
 

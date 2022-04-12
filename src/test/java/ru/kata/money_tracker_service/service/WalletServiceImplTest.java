@@ -109,7 +109,7 @@ class WalletServiceImplTest {
         updatedWallet.setTitle(randomText());
 
         try {
-            walletService.update(updatedWallet, updatedWallet.getId());
+            walletService.update(updatedWallet);
             System.out.println(updatedWallet.getTitle());
             if(updatedWallet.getId() != id) {
                 Assertions.fail("Expected list size "  + id + " , but received " + updatedWallet.getId());

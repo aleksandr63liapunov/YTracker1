@@ -13,7 +13,7 @@ public interface AccountService {
 
     Account save(Account account);
 
-    Account update(Account account, long id);
+    Account update(Account account);
 
     void delete(Long account);
 
