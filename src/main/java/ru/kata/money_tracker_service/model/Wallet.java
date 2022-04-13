@@ -15,7 +15,6 @@ public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(value = AccessLevel.NONE)
     private long id;
 
     private String title;
@@ -31,5 +30,5 @@ public class Wallet {
 
     private double totalAmount;
 
-    private long GroupWalletsId;
+    private long groupWalletsId;
 }

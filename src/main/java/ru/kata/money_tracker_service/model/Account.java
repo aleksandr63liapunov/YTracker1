@@ -16,7 +16,6 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(value = AccessLevel.NONE)
     private long id;
 
     private long userId;
@@ -28,6 +27,6 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private CurrencyEnum mainCurrency;
 
-    @OneToOne(mappedBy = "account", targetEntity = Wallet.class)
+    @OneToOne(mappedBy = "account", targetEntity = Wallet.class, cascade = CascadeType.ALL)
     private Wallet wallet;
 }
