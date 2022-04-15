@@ -28,8 +28,8 @@ class WalletServiceImplTest {
     }
 
     Account accountTest = new Account();
-    Wallet walletTest = new Wallet(0, randomText(), 15, accountTest, CurrencyEnum.USD, 15.5, 15);
-    Wallet walletTestId = new Wallet(0, randomText(), 15, accountTest, CurrencyEnum.USD, 15.5, 15);
+    Wallet walletTest = new Wallet(0, randomText(), accountTest, CurrencyEnum.USD, 15.5, 15);
+    Wallet walletTestId = new Wallet(0, randomText(), accountTest, CurrencyEnum.USD, 15.5, 15);
     Wallet walletTest1 = new Wallet();
     Wallet walletTest2 = new Wallet();
     Wallet walletTest3 = new Wallet();

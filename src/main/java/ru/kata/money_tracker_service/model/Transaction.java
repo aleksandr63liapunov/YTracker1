@@ -3,9 +3,6 @@ package ru.kata.money_tracker_service.model;
 import javax.persistence.*;
 
 import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -15,23 +12,23 @@ import java.util.Objects;
 @EqualsAndHashCode()
 @Table
 public class Transaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(value = AccessLevel.NONE)
     private Long id;
 
-
     @OneToOne
     @JoinColumn (name = "expense_wallet")
     private Wallet expenseWallet;
-
 
     @OneToOne
     @JoinColumn(name = "income_wallet")
     private Wallet incomeWallet;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TypeOfTransation type;
+
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
 }
