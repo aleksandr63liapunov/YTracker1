@@ -27,6 +27,6 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private CurrencyEnum mainCurrency;
 
-    @OneToOne(mappedBy = "account", targetEntity = Wallet.class, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "account")
     private Wallet wallet;
 }

@@ -19,13 +19,11 @@ public class Wallet {
 
     private String title;
 
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private long accountId;
-
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class)
-    @JoinColumn(name = "account", referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+    @Enumerated(EnumType.STRING)
     private CurrencyEnum currency;
 
     private double totalAmount;

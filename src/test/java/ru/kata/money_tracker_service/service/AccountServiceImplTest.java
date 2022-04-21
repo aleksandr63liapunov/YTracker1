@@ -28,7 +28,7 @@ class AccountServiceImplTest {
     }
 
     Account accountEmpty = new Account();
-    Wallet wallet = new Wallet(0, randomText(), 15, accountEmpty, CurrencyEnum.USD, 15.5, 15);
+    Wallet wallet = new Wallet(0, randomText(), accountEmpty, CurrencyEnum.USD, 15.5, 15);
     Wallet wallet1 = new Wallet();
     Account accountTest = new Account(0, 1L, true, CurrencyEnum.USD, wallet);
     Account accountTest1 = new Account();
