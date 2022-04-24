@@ -1,5 +1,7 @@
 package ru.kata.money_tracker_service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +14,10 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 @EqualsAndHashCode()
+
+
+
+
 public class Account {
 
     @Id
@@ -28,5 +34,7 @@ public class Account {
     private CurrencyEnum mainCurrency;
 
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
+
     private Wallet wallet;
 }

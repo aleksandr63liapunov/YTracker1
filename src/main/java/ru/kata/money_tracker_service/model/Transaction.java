@@ -2,6 +2,8 @@ package ru.kata.money_tracker_service.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 @Entity
@@ -11,6 +13,7 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode()
 @Table
+
 public class Transaction {
 
     @Id
