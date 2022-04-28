@@ -141,10 +141,18 @@ function addExpense2() {
 }
 
 
-
-
 function addExpense3() {
-    let form = $("#newFormExpense");
+    // let form = $("#newFormExpense");
+
+    let form = {
+        id: 0,
+        type: 'EXPENSE',
+        amountOfCurrency: 500,
+        blockNote: $('#blockNote').val().trim(),
+        date : $('#date1').val().trim(),
+        wallet: null
+    }
+
     $.ajax({
 
         type: 'POST',
@@ -156,25 +164,6 @@ function addExpense3() {
         }
     })
 }
- function addExpense4(){
-
-     let form = {
-         type: $("#nav-expense-tab").val().trim()
-     }
-     $.ajax({
-
-         type: 'POST',
-         url: 'api/transaction',
-         data: form.serialize(),
-
-         success: function () {
-             form.submit()
-         }
-     })
-
-
- }
-
 
 
 // function addExpense3() {
