@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.w3.org/1999/html"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+    <link th:href="@{/text.css}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <title>Title</title>
+</head>
+<body style="background: whitesmoke">
+
+<div class="header_toggle"><i class='bx bx-menu' id="header-toggle"></i></div>
+
+
+<nav class="navbar  navbar-expand-md sticky-top" style="background-color: #3f51b5">
+    <!--                                         иконка бакс-->
+    <i class='bx bxs-dollar-circle' style="height: 60px; font-size: 3em; color: #F7F6FB"></i>
+    <div class="col-10">
+
+
+        <simple class="text-white"><p class="fs-1">Transaction</p></simple>
+
+    </div>
+
+
+    <!--                                  иконка обновления-->
+    <a href="#" onclick="location.reload(); return false;">
+        <i class='bx bx-repost' style="height: 60px; font-size: 3em; color: #F7F6FB; margin-left: 100px"></i>
+    </a>
+</nav>
+
+
+<div class="row ">
+    <div class="col-auto " style="width: unset">
+        <ul>
+            <li><a href="#">
+                <i class='bx bxs-dashboard'></i>
+                Dashboard</a></li>
+            <li><a class="active" href="#">
+                <i class='bx bx-transfer'></i>
+                Transaction</a></li>
+            <li><a href="#">
+                <i class='bx bxs-credit-card'></i>
+                <br>Accounts</a></li>
+            <li><a href="#">
+                <i class='bx bx-line-chart'></i>
+                <br>Rerorts</a></li>
+            <li><a href="#">
+                <i class='bx bxs-basket'></i>
+                <br>Budjet</a></li>
+            <li><a href="#">
+                <i class='bx bx-slider'></i>
+                <br> Setings</a></li>
+
+        </ul>
+    </div>
+    <!--                               правая колона-->
+    <div class="col-auto  border #d4d4d5 container  mx-auto bg-white m-5 " style="width: 900px;height: 150px ">
+        <div class="row align-items-center row gy-5">
+            <div class="container ">
+                <div class="row align-items-center">
+                    <div class="col-1">
+                        <i class='bx bx-user-circle'></i>
+                    </div>
+                    <div class="col-11" style="font-size: larger">
+                        <strong> Welcome to demo account!</strong>
+                        <br> You are logged in as a demo user with sample data generated to show you how things
+                        might look like. All the changes you make will only be stored locally on your device.
+                        <br>
+                        <button type="button" class="btn btn-outline-secondary btn-icon p-1 m-2 ">Go to Live App
+                            <span
+                                    class="icon"><i
+                                    class='bx bx-exit'></i>
+                        </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--                             вторая правая-->
+            <div class="col-auto  border #d4d4d5 container  mx-auto bg-white m-6  " style="width: 900px;height: 250px ">
+                <div class="btn-group m-3" role="group">
+                    <button type="button" class="btn btn-outline-secondary btn-icon" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+
+                        <i class='bx bx-plus'></i>
+
+                        New
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        <i class='bx bx-file-blank'></i>
+                                        New Transaction
+                                    </h5>
+
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--                                    вкладки в модалке&ndash;&gt;-->
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <button class="nav-link active" style="width: 150px" id="nav-expense-tab" value="EXPENSE"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-expense" type="button"
+                                                    role="tab" aria-controls="nav-home" aria-selected="true">Expense
+                                            </button>
+                                            <button class="nav-link" style="width: 150px" id="nav-transfer-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-transfer" type="button"
+                                                    role="tab" aria-controls="nav-profile" aria-selected="false">
+                                                Transfer
+                                            </button>
+                                            <button class="nav-link" style="width: 150px" id="nav-income-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-income" type="button"
+                                                    role="tab" aria-controls="nav-contact" aria-selected="false">Income
+                                            </button>
+                                        </div>
+                                    </nav>
+                                    <!--                                    заполнение вкладок&ndash;&gt;-->
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-expense" role="tabpanel"
+                                             aria-labelledby="nav-expense-tab">
+                                            <form id="newFormExpense">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <label class="label">From</label>
+                                                                <div class="drop">
+                                                                    <select class="form-select"
+                                                                            aria-label="Default select example"
+                                                                            id="walletTitle" name="title">
+                                                                        <option></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="label">Tags</label>
+                                                                <div class="drop">
+                                                                    <select multiple class="form-select"
+                                                                            aria-label="Default select example"
+                                                                            id="tagTitle" name="titleT">
+                                                                        <option></option>
+                                                                    </select>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </form>
+                                                        <div>
+                                                            <input type="text" class="form-control" placeholder="Note" name="blockNote" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4  ">
+                                                        <div class="form-group">
+                                                            <label class="label"></label>
+                                                            <div class="input-group">
+                                                                <input class="form-control"
+                                                                       aria-labelledby="Default select example"
+                                                                       style="width: 50px"
+                                                                       required min="0.01" step="0.01" type="number"
+                                                                       value="" name="totalAmount">
+                                                                <div class="input-group-addon select-input">
+
+                                                                    <!--                                                                выбор валюты подвязка к енам-->
+
+                                                                    <select class="form-control" name="currency">
+                                                                        <option th:each="colorOpt : ${T(ru.kata.money_tracker_service.model.CurrencyEnum).values()}"
+                                                                                th:value="${colorOpt}"
+                                                                                th:text="${colorOpt}"></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--                                                        календарь -->
+                                                        <div class="mb-3">
+                                                            <label class="form-label"></label>
+                                                            <input type="date" class="form-control" id="date1"
+                                                                   name="date" placeholder="Дата" required>
+                                                        </div>
+
+                                                        <!--  использование использование двух операций при нажатии одной кнопки-->
+                                                        <div class="mb-3">
+                                                            <button type="button" class="btn btn-success"
+                                                                    onclick="addExpense1();addExpense2();addExpense3();addExpense4();">Add Expense
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-transfer" role="tabpanel"
+                                             aria-labelledby="nav-transfer-tab">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <form>
+                                                        <div class="mb-3">
+                                                            <label class="label">From</label>
+                                                            <select class="form-select"
+                                                                    aria-label="Default select example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="label">To</label>
+                                                            <select class="form-select"
+                                                                    aria-label="Default select example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                    <div>
+                                                        Note <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <form>
+                                                        <div class=" mb-3  ">
+                                                            <label class="label"></label>
+                                                            <input class="form-select"
+                                                                   aria-label="Default select example"
+                                                                   style="width: 100px" required min="0.01" step="0.01"
+                                                                   type="number" value="">
+
+                                                        </div>
+                                                        <div class=" mb-3  ">
+                                                            <label class="label"></label>
+                                                            <input class="form-select"
+                                                                   aria-label="Default select example"
+                                                                   style="width: 100px" required min="0.01" step="0.01"
+                                                                   type="number" value="">
+
+                                                        </div>
+                                                        <!--                                           календарь -->
+                                                        <div class="mb-3">
+                                                            <label class="form-label"></label>
+                                                            <input type="date" class="form-control" id="date2"
+                                                                   name="date" placeholder="Дата" required>
+                                                        </div>
+
+                                                    </form>
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary">Add Transfer
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="container">
+                                                    <!--                                                <div class="col-8">-->
+                                                    <!--                                                    <input type="text" class="form-control" placeholder="Note">-->
+                                                    <!--                                                </div>-->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-income" role="tabpanel"
+                                             aria-labelledby="nav-income-tab">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <form>
+                                                        <div class="mb-3">
+                                                            <label class="label">From</label>
+                                                            <select class="form-select"
+                                                                    aria-label="Default select example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="label">Tags</label>
+                                                            <select class="form-select"
+                                                                    aria-label="Default select example">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                    <div>
+                                                        <input type="text" class="form-control" placeholder="Note">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <form>
+                                                        <div class=" mb-3  ">
+                                                            <label class="label"></label>
+                                                            <input class="form-select"
+                                                                   aria-label="Default select example"
+                                                                   style="width: 100px" required min="0.01" step="0.01"
+                                                                   type="number" value="">
+
+                                                        </div>
+                                                        <!--                                                        календарь -->
+                                                        <div class="mb-3">
+                                                            <label class="form-label"></label>
+                                                            <input type="date" class="form-control" id="date3"
+                                                                   name="date" placeholder="Дата" required>
+                                                        </div>
+                                                    </form>
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary">Add Income
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="container">
+                                                    <!--                                                <div class="col-8">-->
+                                                    <!--                                                    <input type="text" class="form-control" placeholder="Note">-->
+                                                    <!--                                                </div>-->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--                                    конец заполнения вкладок-->
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="dropdown" id="reportrange"
+                         style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                        <i class='bx bxs-calendar-alt'></i>
+                        <span></span> <i class='bx bxs-caret-down-circle'></i>
+                    </div>
+                    <script> $(function () {
+
+                        var start = moment().subtract(29, 'days');
+                        var end = moment();
+
+                        function cb(start, end) {
+                            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                        }
+
+                        $('#reportrange').daterangepicker({
+                            startDate: start,
+                            endDate: end,
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            }
+                        }, cb);
+
+                        cb(start, end);
+
+                    });</script>
+
+                    <button type="button" class="btn btn-outline-secondary btn-icon" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal1"><i class='bx bxs-filter-alt'></i></button>
+                    <div class="modal fade" id="exampleModal1" tabindex="-2" aria-labelledby="exampleModalLabel1"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1">
+
+                                        <strong> Filter transactions</strong>
+                                    </h5>
+
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    <!--                                    <div class="modal-body">-->
+
+                                    <!--                                    </div>-->
+
+                                </div>
+                                <div class=" mx-auto" style="width: 400px ">
+                                    Account<select class="form-select form-select-lg mb-3 " style="height: 35px"
+                                                   aria-label=".form-select-lg example">
+                                    <option selected></option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+
+                                    Tags<select class="form-select form-select-lg mb-3" style="height: 35px"
+                                                aria-label=".form-select-sm example">
+                                    <option selected></option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select></div>
+                                <div class="modal-footer" style="background-color: whitesmoke">
+
+
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Reset
+                                    </button>
+                                    <button type="button" class="btn btn-success">Apply</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="container-fluid">
+                    <table id="tableID" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">dat</th>
+                            <th scope="col">titleWalet</th>
+                            <th scope="col">transaction</th>
+                            <th scope="col">titleTag</th>
+                            <th scope="col">note</th>
+                            <th scope="col">total_amount</th>
+                            <th scope="col">curance</th>
+                            <th scope="col">edit</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyID">
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+Container Main start
+<div class="height-100 bg-light">
+
+
+</div>
+Container Main end
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" th:src="@{/transaction.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -7,6 +7,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -26,5 +28,10 @@ public class Tag {
     private Long userId;
 
     @NotEmpty(message = "Title should not be empty")
-    private String title;
+    private String titleT;
+
+    @OneToMany(mappedBy = "tag" )
+    @JsonBackReference
+
+     private List<Wallet> wallet;
 }

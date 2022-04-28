@@ -35,6 +35,5 @@ public class Account {
 
     @OneToOne(mappedBy = "account")
     @JsonBackReference
-
     private Wallet wallet;
 }
