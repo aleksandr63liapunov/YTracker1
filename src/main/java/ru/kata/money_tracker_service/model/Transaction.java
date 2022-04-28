@@ -39,13 +39,13 @@ public class Transaction {
         this.date = date;
     }
 
-    @OneToOne
-    @JoinColumn (name = "expense_wallet")
-    private Wallet expenseWallet;
-
-    @OneToOne
-    @JoinColumn(name = "income_wallet")
-    private Wallet incomeWallet;
+//    @OneToOne
+//    @JoinColumn (name = "expense_wallet")
+//    private Wallet expenseWallet;
+//
+//    @OneToOne
+//    @JoinColumn(name = "income_wallet")
+//    private Wallet incomeWallet;
 
     @Enumerated(EnumType.STRING)
     private TypeOfTransation type;

@@ -88,9 +88,7 @@ function showWallet() {
     $("#tbodyID").empty();
 
     wallets.forEach(wallet => {
-        console.log(wallet)
-console.log(wallet.transaction.blockNote)
-        console.log(wallet.tag.titleT)
+
         $("#tbodyID").append("<tr>" +
 
             "<td>"+ wallet.transaction.date + "</td>"+

@@ -21,17 +21,21 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(value = AccessLevel.NONE)
+
+//    @Setter(value = AccessLevel.NONE)
     private Long id;
 
     @NotEmpty(message = "User id should not be empty")
     private Long userId;
 
     @NotEmpty(message = "Title should not be empty")
+//    @Column(unique = true)
     private String titleT;
 
     @OneToMany(mappedBy = "tag" )
     @JsonBackReference
 
      private List<Wallet> wallet;
+
+
 }
