@@ -86,28 +86,28 @@ function transactionExpenseTagTitle() {
 function showWallet() {
 
     $("#tbodyID").empty();
-
-    wallets.forEach(wallet => {
-
+    wallets.forEach(transaction => {
+        console.log(transaction.wallet)
+        console.log(transaction.tag)
         $("#tbodyID").append("<tr>" +
 
-            "<td>"+ wallet.transaction.date + "</td>"+
-            "<td>" + wallet.title + "</td>" +
-            "<td>" + wallet.transaction.type + "</td>" +
+            "<td>" + transaction.date + "</td>"+
+            "<td>" + transaction.wallet.title + "</td>" +
+            "<td>" + transaction.type + "</td>" +
 
-            "<td>"+ wallet.tag.titleT +"</td>"+
-            "<td>" + wallet.transaction.blockNote + "</td>" +
-            "<td>" + wallet.totalAmount + "</td>" +
-            "<td>" + wallet.currency + "</td>" +
+            "<td>" + transaction.tag.titleT+"</td>"+
+            "<td>" + transaction.blockNote + "</td>" +
+            "<td>" + transaction.wallet.totalAmount + "</td>" +
+            "<td>" + transaction.wallet.currency + "</td>" +
             "<td><button class='btn btn-info' data-bs-toggle='modal'" +
-            " data-bs-target='#Um' onclick='uModal(" + wallet.id + ")'" +
-            " style='color: white'>Edit</button></td>" +
+            " data-bs-target='#Um' onclick='uModal(" + transaction.id + ")'" +
+            " style='color: #f5f3f3'>Edit</button></td>" +
 
             "</tr>");
     });
 }
 
-fetch("/api/wallets").then(response => {
+fetch("/api/transaction").then(response => {
     response.json().then(allWal => {
         wallets = allWal;
         showWallet()
@@ -140,40 +140,43 @@ function addExpense2() {
     })
 }
 
-
-
-
 function addExpense3() {
     let form = $("#newFormExpense");
-    $.ajax({
 
+    $.ajax({
         type: 'POST',
         url: 'api/transaction',
         data: form.serialize(),
-
         success: function () {
             form.submit()
         }
     })
 }
- function addExpense4(){
-
-     let form = {
-         type: $("#nav-expense-tab").val().trim()
-     }
-     $.ajax({
-
-         type: 'POST',
-         url: 'api/transaction',
-         data: form.serialize(),
-
-         success: function () {
-             form.submit()
-         }
-     })
 
 
- }
+
+// function addExpense3() {
+//     // let form = $("#newFormExpense");
+//     let form = {
+//         id: 0,
+//         type: 'EXPENSE',
+//         amountOfCurrency: 500,
+//         blockNote: $('#blockNote').val().trim(),
+//         date : $('#date1').val().trim(),
+//         wallet: null
+//     }
+//     $.ajax({
+//
+//         type: 'POST',
+//         url: 'api/transaction',
+//         data: form.serialize(),
+//
+//         success: function () {
+//             form.submit()
+//         }
+//     })
+// }
+
 
 
 
@@ -189,59 +192,3 @@ function addExpense3() {
 //     })
 // }
 
-// <script type="text/javascript">
-//
-//     fetch("/api/wallet"
-//     , {
-//     method: 'GET'
-//     // headers: {'Content-Type': 'application/json'}
-// })
-//     .then(
-//     res => {
-//     res.json().then(
-//         all => {
-//             all.data.forEach((result) => {
-//                 document.querySelector('#tbodyID3').insertAdjacentHTML('beforeend',
-//                     `<tr>
-//            <td>${result.id}</td>
-//            <td>${result.identifier}</td>
-//            <td>${result.name}</td>
-//
-//
-//            </tr>`);
-//             })
-//         }
-//     )
-// }
-//     )
-// </script>
-
-// function adminTable3() {
-//     $("#tbodyID3").empty();
-//     users.forEach(user => {
-//         $("#tbodyID3" , {method: "GET"}).append("<tr>" +
-//             "<td>" + user.id + "</td>" +
-//             "<td>" + user.name + "</td>" +
-//             "<td>" + user.surname + "</td>" +
-//             "<td>" + user.age + "</td>" +
-//
-//
-//             // "<td><button class='btn btn-info' data-bs-toggle='modal' data-bs-target='#Um' onclick='uModal(" + user.id + ")' style='color: white'>Edit</button></td>" +
-//             // "<td><button class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#Dm' onclick='dModal(" + user.id + ")' >Delete</button></td>" +
-//             "</tr>");
-//     });
-// }
-//
-// function adminPage() {
-//     fetch("/api/wallet").then(response => {
-//         response.json().then(allRoles => {
-//             roles = allRoles;
-//         })
-//     })
-//     fetch("/api/admin").then(response => {
-//         response.json().then(allUsers => {
-//             users = allUsers;
-//             adminTable()
-//         })
-//     })
-// }

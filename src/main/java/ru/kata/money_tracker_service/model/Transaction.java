@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode()
+//@EqualsAndHashCode()
 @Table
 
 public class Transaction {
@@ -23,6 +23,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Setter(value = AccessLevel.NONE)
     private Long id;
+
+    public Transaction() {
+    }
 
     public Transaction(TypeOfTransation type) {
         this.type = type;
@@ -39,6 +42,12 @@ public class Transaction {
         this.date = date;
     }
 
+    public Transaction(TypeOfTransation type, String blockNote, Date date,Tag tag) {
+        this.type = type;
+        this.blockNote = blockNote;
+        this.date = date;
+        this.tag = tag;
+    }
 //    @OneToOne
 //    @JoinColumn (name = "expense_wallet")
 //    private Wallet expenseWallet;
@@ -59,7 +68,13 @@ public class Transaction {
     @Column
     private Date date;
 
-    @OneToMany(mappedBy = "transaction")
-    @JsonBackReference
-    private List<Wallet> wallet;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account", referencedColumnName = "id")
+//    @JsonManagedReference
+    private Wallet wallet;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid", referencedColumnName = "id")
+//    @JsonManagedReference
+    private Tag tag;
 }

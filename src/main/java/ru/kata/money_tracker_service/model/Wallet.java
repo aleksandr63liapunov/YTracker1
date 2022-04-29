@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -12,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode()
+//@EqualsAndHashCode()
 
 public class Wallet {
 
@@ -22,9 +24,15 @@ public class Wallet {
 
     private String title;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class)
+    public Wallet(String title, CurrencyEnum currency, double totalAmount) {
+        this.title = title;
+        this.currency = currency;
+        this.totalAmount = totalAmount;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    @JsonManagedReference
+    @JsonBackReference
     private Account account;
 
     @Enumerated(EnumType.STRING)
@@ -33,22 +41,10 @@ public class Wallet {
     private double totalAmount;
 
     private long groupWalletsId;
-    @ManyToOne
-    @JoinColumn(name = "tag",referencedColumnName = "id")
-    private Tag tag;
 
-    @ManyToOne()
-    @JoinColumn(name = "transaction",referencedColumnName = "id")
-    private Transaction transaction;
-//
-//    @OneToOne//(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
-//    @JsonManagedReference
-//    private Transaction expenseWallet;
-//
-//
-//    @OneToOne//(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
-//    @JsonManagedReference
-//    private Transaction incomeWallet;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wallet")
+    @JsonBackReference
+    private Set<Transaction> transaction;
+
 }
