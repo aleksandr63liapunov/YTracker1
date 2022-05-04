@@ -1,7 +1,8 @@
-let wallets, temp;
-// showWallets()
+let wallets;
 transactionExpenseWalletTitle()
 transactionExpenseTagTitle()
+transactionIncomeWalletTitle()
+transactionIncomeTagTitle()
 // adminTable()
 //  $(function () {
 //
@@ -30,12 +31,45 @@ transactionExpenseTagTitle()
 // });
 
 
+
+fetch("/api/transactions/dto_get_all").then(response => {
+    response.json().then(allWal => {
+        wallets = allWal;
+        showWallet()
+    })
+})
+
+function showWallet() {
+
+    $("#tbodyID").empty();
+    wallets.forEach(transaction => {
+        console.log(transaction.wallet)
+        console.log(transaction.tag)
+        $("#tbodyID").append("<tr>" +
+
+            "<td>" + transaction.calendar + "</td>"+
+            "<td>" + transaction.wallet.title + "</td>" +
+            "<td>" + transaction.type + "</td>" +
+
+            "<td>" + transaction.tag.title+"</td>"+
+            "<td>" + transaction.blockNote + "</td>" +
+            "<td>" + transaction.wallet.totalAmount + "</td>" +
+            "<td>" + transaction.wallet.currency + "</td>" +
+            "<td><button class='btn btn-info' data-bs-toggle='modal'" +
+            " data-bs-target='#Um' onclick='uModal(" + transaction.id + ")'" +
+            " style='color: #f5f3f3'>Edit</button></td>" +
+
+            "</tr>");
+    });
+}
+
+
 function transactionExpenseWalletTitle() {
 
     fetch("/api/wallets", {method: "GET"}).then(response => {
         response.json().then(allWallet => renderSelectList(allWallet))
         const renderSelectList = (allWallet) => {
-            let select = $('#walletTitle');
+            let select = $('#walletTitleExpense');
             select.empty();
             console.log(allWallet)
             allWallet.forEach(allWallet => {
@@ -51,108 +85,143 @@ function transactionExpenseTagTitle() {
     fetch("/api/tags", {method: "GET"}).then(response2 => {
         response2.json().then(allTag => renderSelectList(allTag))
         const renderSelectList = (allTag) => {
-            let select2 = $('#tagTitle');
+            let select2 = $('#tagTitleExpense');
             select2.empty();
             console.log(allTag)
             allTag.forEach(allTag => {
-                let temp2 = `<option value="${allTag.titleT}"> ${allTag.titleT}</option>`
+                let temp2 = `<option value="${allTag.title}"> ${allTag.title}</option>`
                 select2.append(temp2)
             })
         }
     })
 }
 
+async function addExpense() {
+    let form = $("#newFormExpense");
 
-//  function showWallets() {
+    $.ajax({
+        type: 'POST',
+        url: '/api/transactions',
+        data: form.serialize(),
+        success: function () {
+            form.submit()
+        }
+    })
+}
+
+function transactionIncomeWalletTitle() {
+
+    fetch("/api/wallets", {method: "GET"}).then(response => {
+        response.json().then(allWallet => renderSelectList(allWallet))
+        const renderSelectList = (allWallet) => {
+            let select = $('#walletTitleIncome');
+            select.empty();
+            console.log(allWallet)
+            allWallet.forEach(allWallet => {
+                let temp = `<option value="${allWallet.title}"> ${allWallet.title}</option>`
+                select.append(temp)
+            })
+        }
+    })
+}
+
+function transactionIncomeTagTitle() {
+
+    fetch("/api/tags", {method: "GET"}).then(response2 => {
+        response2.json().then(allTag => renderSelectList(allTag))
+        const renderSelectList = (allTag) => {
+            let select2 = $('#tagTitleIncome');
+            select2.empty();
+            console.log(allTag)
+            allTag.forEach(allTag => {
+                let temp2 = `<option value="${allTag.title}"> ${allTag.title}</option>`
+                select2.append(temp2)
+            })
+        }
+    })
+}
+
+async function addIncome() {
+    let form = $("#newFormIncome");
+    $.ajax({
+        type: 'POST',
+        url: '/api/transactions',
+        data: form.serialize(),
+        success: function () {
+            form.submit()
+        }
+    })
+}
+
+
+
+
+
+
+
+
+// function getDataFromForm(form) {
+//     const data = {
+//         blockNote: document.querySelector(`${form} input[name="blockNote"]`).value,
+//         //surname: document.querySelector(`${form} input[name="surname"]`).value,
+//         //age: document.querySelector(`${form} input[name="age"]`).value,
 //
-//     fetch("/api/wallets", {method: "GET"}).then(response3 => {
-//         response3.json().then(allWallet => renderSelectList(allWallet))
-//         const renderSelectList = (allWallet) => {
-//             // $("#tbodyID3").empty();
-//             allWallet.forEach(allWallet => {
-//                document.querySelector("#tbodyID").insertAdjacentHTML('beforeend'
-//                    `<tr>
-//                 <td>${allWallet.id}</td>
-//                 <td>${allWallet.title}</td>
-//                 <td>${allWallet.totalAmount}</td>
+//     }
 //
+//     const id = document.querySelector(`${form} input[name="id"]`)
+//     if (id) data.id = id.value
 //
-//                 </tr>`);
-//             })
+//     return data
+// }
+//
+// async function addExpense3() {
+//     try {
+//         await request('http://localhost:8080/api/transactions', 'POST',
+//             getDataFromForm('#newFormExpense'))
+//     } catch (e) {
+//         alert('Не удалось создать пользователя')
+//         throw e
+//     }}
+//
+// async function request(url, method = 'GET', payload) {
+//     const options = {method, headers: {"Content-type": "application/json", "Accept": "application/json"}}
+//     if (payload) options.body = JSON.stringify(payload)
+//
+//     const response = await fetch(url, options)
+//
+//     if (!response.ok) {
+//         alert("Ошибка HTTP: " + response.status)
+//         throw Error("Ошибка HTTP: " + response.status)
+//     }
+//
+//     if (method === 'DELETE') return
+//
+//     return await response.json()
+// }
+
+
+
+
+// async function addExpense3(){
+//     // let form = $("#newFormExpense");
+//         let form = {
+//         id: 0,
+//         // type: 'EXPENSE',
+//         // amountOfCurrency: 500,
+//         blockNote: $('#blockNote').val().trim(),
+//         date : $('#date').val().trim(),
+//         //wallet: null
+//             }
+//
+//     $.ajax({
+//         type: 'POST',
+//         url: 'api/transactions',
+//         data: form.serialize(),
+//         success: function () {
+//             form.submit()
 //         }
 //     })
 // }
-
-function showWallet() {
-
-    $("#tbodyID").empty();
-    wallets.forEach(transaction => {
-        console.log(transaction.wallet)
-        console.log(transaction.tag)
-        $("#tbodyID").append("<tr>" +
-
-            "<td>" + transaction.date + "</td>"+
-            "<td>" + transaction.wallet.title + "</td>" +
-            "<td>" + transaction.type + "</td>" +
-
-            "<td>" + transaction.tag.titleT+"</td>"+
-            "<td>" + transaction.blockNote + "</td>" +
-            "<td>" + transaction.wallet.totalAmount + "</td>" +
-            "<td>" + transaction.wallet.currency + "</td>" +
-            "<td><button class='btn btn-info' data-bs-toggle='modal'" +
-            " data-bs-target='#Um' onclick='uModal(" + transaction.id + ")'" +
-            " style='color: #f5f3f3'>Edit</button></td>" +
-
-            "</tr>");
-    });
-}
-
-fetch("/api/transaction").then(response => {
-    response.json().then(allWal => {
-        wallets = allWal;
-        showWallet()
-    })
-})
-
-
-function addExpense1() {
-    let form = $("#newFormExpense");
-    $.ajax({
-        type: 'POST',
-        url: 'api/wallets',
-        data: form.serialize(),
-        success: function () {
-            form.submit()
-        }
-    })
-}
-
-function addExpense2() {
-    let form = $("#newFormExpense");
-
-    $.ajax({
-        type: 'POST',
-        url: 'api/tags',
-        data: form.serialize(),
-        success: function () {
-            form.submit()
-        }
-    })
-}
-
-function addExpense3() {
-    let form = $("#newFormExpense");
-
-    $.ajax({
-        type: 'POST',
-        url: 'api/transaction',
-        data: form.serialize(),
-        success: function () {
-            form.submit()
-        }
-    })
-}
-
 
 
 // function addExpense3() {
@@ -168,7 +237,7 @@ function addExpense3() {
 //     $.ajax({
 //
 //         type: 'POST',
-//         url: 'api/transaction',
+//         url: 'api/transactions',
 //         data: form.serialize(),
 //
 //         success: function () {
@@ -191,4 +260,3 @@ function addExpense3() {
 //         }
 //     })
 // }
-

@@ -19,7 +19,6 @@ import javax.validation.constraints.*;
 
 
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -34,6 +33,6 @@ public class Account {
     private CurrencyEnum mainCurrency;
 
     @OneToOne(mappedBy = "account")
-    @JsonBackReference
+    @JsonManagedReference
     private Wallet wallet;
 }

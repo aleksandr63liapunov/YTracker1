@@ -23,5 +23,5 @@ public class GroupWallets {
     private String title;
 
     private long AccountId;
-    
+
 }

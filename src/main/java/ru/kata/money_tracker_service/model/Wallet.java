@@ -1,6 +1,7 @@
 package ru.kata.money_tracker_service.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -24,15 +25,9 @@ public class Wallet {
 
     private String title;
 
-    public Wallet(String title, CurrencyEnum currency, double totalAmount) {
-        this.title = title;
-        this.currency = currency;
-        this.totalAmount = totalAmount;
-    }
-
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Account.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonIgnore
     private Account account;
 
     @Enumerated(EnumType.STRING)
@@ -43,8 +38,5 @@ public class Wallet {
     private long groupWalletsId;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wallet")
-    @JsonBackReference
-    private Set<Transaction> transaction;
 
 }

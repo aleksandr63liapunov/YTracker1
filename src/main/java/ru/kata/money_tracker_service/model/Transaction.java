@@ -6,11 +6,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -19,42 +20,20 @@ import java.util.List;
 
 public class Transaction {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Setter(value = AccessLevel.NONE)
+    @Setter(value = AccessLevel.NONE)
     private Long id;
 
-    public Transaction() {
-    }
+    @OneToOne
+    @JoinColumn (name = "expense_wallet")
+    private Wallet expenseWallet;
 
-    public Transaction(TypeOfTransation type) {
-        this.type = type;
-    }
+    @OneToOne
+    @JoinColumn(name = "income_wallet")
+    private Wallet incomeWallet;
 
-    public Transaction(TypeOfTransation type, String blockNote, Date date) {
-        this.type = type;
-        this.blockNote = blockNote;
-        this.date = date;
-    }
-
-    public Transaction(String blockNote, Date date) {
-        this.blockNote = blockNote;
-        this.date = date;
-    }
-
-    public Transaction(TypeOfTransation type, String blockNote, Date date,Tag tag) {
-        this.type = type;
-        this.blockNote = blockNote;
-        this.date = date;
-        this.tag = tag;
-    }
-//    @OneToOne
-//    @JoinColumn (name = "expense_wallet")
-//    private Wallet expenseWallet;
-//
-//    @OneToOne
-//    @JoinColumn(name = "income_wallet")
-//    private Wallet incomeWallet;
 
     @Enumerated(EnumType.STRING)
     private TypeOfTransation type;
@@ -62,19 +41,16 @@ public class Transaction {
     @Column(name = "amount_of_currency")
     private Double amountOfCurrency;
 
-    @Column
-     private String blockNote;
+    private String blockNote;
 
-    @Column
-    private Date date;
+    private Calendar calendar;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account", referencedColumnName = "id")
-//    @JsonManagedReference
+    @JoinColumn(name = "wallet_id", referencedColumnName = "id")
     private Wallet wallet;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userid", referencedColumnName = "id")
-//    @JsonManagedReference
+    @JoinColumn(name = "tag_id", referencedColumnName = "id")
     private Tag tag;
+
 }

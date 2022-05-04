@@ -27,11 +27,9 @@ public class Tag {
     private Long userId;
 
     @NotEmpty(message = "Title should not be empty")
-    private String titleT;
+    private String title;
 
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "tag")
-    @JsonBackReference
-    private Set<Transaction> transaction;
+
 
 
 }

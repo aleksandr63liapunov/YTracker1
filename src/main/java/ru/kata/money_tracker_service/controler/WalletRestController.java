@@ -24,20 +24,23 @@ public class WalletRestController {
 
     @GetMapping
     public ResponseEntity<List<Wallet>> restWalFindAll() {
+
         return ResponseEntity.ok(walletService.findAll());
     }
+
     @PostMapping
     public ResponseEntity<Wallet> restWalFindSave(Wallet wallet) {
         return ResponseEntity.ok(walletService.save(wallet));
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Wallet > restWalUpdate(Wallet wallet){
         return ResponseEntity.ok(walletService.update(wallet));
     }
+
     @DeleteMapping("/{id}")
     public void restWalDelete(long walletId){
         walletService.delete(walletId);
     }
 
 }
-
